@@ -1,6 +1,6 @@
-/NC5Zh     https://google.com
+/google    https://google.com
 /example   http://example.com/
 
-# Make sure that this is always last it's yourfallback.
-# Change it to your own website orsomething.
+# Make sure that this is always last it'syourfallback.
+# Change it to your own websiteorsomething.
 /*         https://google.com
