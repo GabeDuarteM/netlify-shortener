@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require("fs");
 const {
   format,
   here,
@@ -6,28 +6,28 @@ const {
   commitAndPush,
   pbcopy,
   validateUrl,
-  validateUnique,
-} = require('./utils')
+  validateUnique
+} = require("./utils");
 
 // TODO: update baseUrl
-const baseUrl = ''
-let [, , longLink, code] = process.argv
-const short = `/${code || generateCode()}`
+const baseUrl = "gd-links.netlify.com";
+let [, , longLink, code] = process.argv;
+const short = `/${code || generateCode()}`;
 
 if (!longLink) {
-  throw 'Must provide the full link as an argument'
+  throw "Must provide the full link as an argument";
 }
-validateUrl(longLink)
+validateUrl(longLink);
 
-const contents = fs.readFileSync(here('_redirects'), 'utf8')
-validateUnique(short, contents)
+const contents = fs.readFileSync(here("_redirects"), "utf8");
+validateUnique(short, contents);
 
-const formatted = format(`${short} ${longLink}\n${contents}`)
-fs.writeFileSync(here('_redirects'), formatted)
+const formatted = format(`${short} ${longLink}\n${contents}`);
+fs.writeFileSync(here("_redirects"), formatted);
 
-commitAndPush(short, longLink)
+commitAndPush(short, longLink);
 
-const link = `${baseUrl}${short}`
-pbcopy(link)
+const link = `${baseUrl}${short}`;
+pbcopy(link);
 
-console.log(`${link} has been copied to your clipboard`)
+console.log(`${link} has been copied to your clipboard`);
